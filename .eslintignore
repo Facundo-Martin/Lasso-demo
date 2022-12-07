@@ -1,5 +1,6 @@
-\*_/node_modules/_
-build
+node_modules/
+public/
+build/
 
 coverage
 **/.next/\*
@@ -10,4 +11,4 @@ _.scss
 **/out/\*
 next-env.d.ts
 
-# next.config.js
+next.config.js
