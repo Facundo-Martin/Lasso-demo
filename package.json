@@ -36,8 +36,8 @@
     "typescript": "^4.9.3"
   },
   "lint-staged": {
-    "**/*.{js,jsx,ts,tsx}": [
-      "tsc --pretty --noEmit",
+    "**/*.{ts,tsx}": [
+      "bash -c tsc --pretty --noEmit --jsx react-jsx",
       "eslint --fix",
       "prettier --write ."
     ]
