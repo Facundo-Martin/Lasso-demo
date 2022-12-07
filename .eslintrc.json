@@ -1,3 +1,72 @@
 {
-  "extends": "next/core-web-vitals"
+  "root": true,
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  // Fix bug
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json", // tells parser relative path of tsconfig.json
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+
+  // all plugins (eslint-plugin-xxx) go here:
+  "plugins": [
+    "@typescript-eslint",
+    "@next/eslint-plugin-next", // https://github.com/vercel/next.js/blob/canary/packages/eslint-plugin-next/lib/index.js
+    "prettier"
+  ],
+
+  // all configs (eslint-config-xxx) go here:
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking", // contains rules that specifically require type information
+    "plugin:@next/next/recommended",
+    "next", // awesome configration provided by Next.js, head to https://nextjs.org/docs/basic-features/eslint to learn more
+    "next/core-web-vitals"
+  ],
+  "rules": {
+    // Enforce double quotes for strings instead of single quotes (if you prefer single quotes you can omit this rule)
+    "quotes": [
+      "error",
+      "double",
+      {
+        "avoidEscape": true
+      }
+    ],
+    // Enforce double quotes for strings instead of single quotes (if you prefer single quotes you can omit this rule)
+    "@typescript-eslint/quotes": [
+      "error",
+      "double",
+      {
+        "avoidEscape": true
+      }
+    ],
+    // Avoid errors when we don't import React in our components (since React 17 we don't need to)
+    "react/react-in-jsx-scope": "off",
+    // Avoid errors when you don't use react prop types (since we will be using TypeScript for this)
+    "react/prop-types": "off",
+    // Avoid errors when spreading props
+    "react/jsx-props-no-spreading": "off",
+    // Avoid errors when using prettier
+    "prettier/prettier": ["error"],
+    "no-undef": "off",
+    "import/no-unresolved": "off",
+    "import/extensions": "off",
+    // Avoid errors when using next/link without an href in the anchor tag
+    "jsx-a11y/anchor-is-valid": "off"
+  }
 }
