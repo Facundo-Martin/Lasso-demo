@@ -20,24 +20,26 @@ import {
 import {
   Bars3BottomLeftIcon,
   BellIcon,
-  CalendarIcon,
+  BriefcaseIcon,
+  CalendarDaysIcon,
   ChartBarIcon,
-  FolderIcon,
+  DocumentDuplicateIcon,
+  EnvelopeIcon,
   HomeIcon,
-  InboxIcon,
   UsersIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import { useRouter } from "next/router";
 import React, { Fragment, useState } from "react";
+import ThemeSwitch from "./ThemeSwitch";
 
 const navigation = [
   { name: "Dashboard", href: "/dashboard", icon: HomeIcon },
-  { name: "Plans", href: "/plans", icon: FolderIcon },
+  { name: "Plans", href: "/plans", icon: BriefcaseIcon },
   { name: "Advisor", href: "/advisor", icon: UsersIcon },
-  { name: "Calendar", href: "/calendar", icon: CalendarIcon },
-  { name: "Documents", href: "/documents", icon: InboxIcon },
+  { name: "Calendar", href: "/calendar", icon: CalendarDaysIcon },
+  { name: "Documents", href: "/documents", icon: DocumentDuplicateIcon },
   { name: "Reports", href: "/reports", icon: ChartBarIcon },
 ];
 const userNavigation = [
@@ -171,7 +173,7 @@ export default function Example({ children }: { children: React.ReactNode }) {
                     href={item.href}
                     className={clsx(
                       router.pathname == item.href
-                        ? "bg-gray-100 text-gray-900"
+                        ? "bg-gray-100 text-purple-800"
                         : "text-gray-600 hover:bg-gray-50 hover:text-gray-900",
                       "group flex items-center px-2 py-2 text-sm font-medium rounded-md",
                     )}
@@ -179,7 +181,7 @@ export default function Example({ children }: { children: React.ReactNode }) {
                     <item.icon
                       className={clsx(
                         router.pathname == item.href
-                          ? "text-gray-500"
+                          ? "text-purple-700"
                           : "text-gray-400 group-hover:text-gray-500",
                         "mr-3 flex-shrink-0 h-6 w-6",
                       )}
@@ -233,11 +235,19 @@ export default function Example({ children }: { children: React.ReactNode }) {
               <div className="ml-4 flex items-center md:ml-6">
                 <button
                   type="button"
-                  className="rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  className="rounded-full bg-white p-2 hover:bg-gray-100 text-gray-400 hover:text-gray-500"
+                >
+                  <span className="sr-only">View notifications</span>
+                  <EnvelopeIcon className="h-6 w-6" aria-hidden="true" />
+                </button>
+                <button
+                  type="button"
+                  className="rounded-full bg-white p-2 hover:bg-gray-100 text-gray-400 hover:text-gray-500"
                 >
                   <span className="sr-only">View notifications</span>
                   <BellIcon className="h-6 w-6" aria-hidden="true" />
                 </button>
+                <ThemeSwitch />
 
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
