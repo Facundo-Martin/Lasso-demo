@@ -20,7 +20,7 @@ const ThemeSwitch = () => {
       <button
         type="button"
         onClick={() => setTheme("light")}
-        className="p-2 rounded-full text-gray-400 hover:text-gray-500 hover:bg-gray-100"
+        className="rounded-full bg-white  p-2 hover:bg-gray-100 dark:hover:bg-gray-700 dark:bg-gray-900 hover:dark:text-gray-400 text-gray-400 hover:text-gray-500"
       >
         <SunIcon className="w-6 h-6" />
       </button>
@@ -30,7 +30,7 @@ const ThemeSwitch = () => {
       <button
         type="button"
         onClick={() => setTheme("dark")}
-        className="p-2 rounded-full text-gray-400 hover:text-gray-500 hover:bg-gray-100"
+        className="rounded-full bg-white  p-2 hover:bg-gray-100 dark:hover:bg-gray-700 dark:bg-gray-900 hover:dark:text-gray-400 text-gray-400 hover:text-gray-500"
       >
         <MoonIcon className="w-6 h-6" />
       </button>

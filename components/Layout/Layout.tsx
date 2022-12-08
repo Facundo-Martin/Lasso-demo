@@ -99,7 +99,7 @@ export default function Example({ children }: { children: React.ReactNode }) {
                     />
                   </div>
                   <div className="mt-5 h-0 flex-1 overflow-y-auto">
-                    <nav className="space-y-1 px-2">
+                    <nav className="space-y-1 px-2 ">
                       {navigation.map((item) => (
                         <a
                           key={item.name}
@@ -135,15 +135,15 @@ export default function Example({ children }: { children: React.ReactNode }) {
         </Transition.Root>
 
         {/* Static sidebar for desktop */}
-        <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
+        <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col ">
           {/* Sidebar component, swap this element with another sidebar if you like */}
-          <div className="flex flex-grow flex-col overflow-y-auto border-r border-gray-200 bg-white ">
-            <div className="flex flex-shrink-0 items-center px-4 bg-purple-700 py-4">
+          <div className="flex flex-grow flex-col overflow-y-auto border-r border-gray-200 dark:border-gray-600 dark:bg-gray-800 bg-white ">
+            <div className="flex flex-shrink-0 items-center px-4 bg-purple-700 dark:bg-gray-900 py-4">
               <img className="h-8 w-auto" src="/logo.png" alt="Your Company" />
             </div>
             <div className="mt-5 flex flex-grow flex-col">
               <nav
-                className="mt-5 flex-1 space-y-1 bg-white px-2"
+                className="mt-5 flex-1 space-y-1 dark:bg-gray-800 bg-white px-2"
                 aria-label="Sidebar"
               >
                 {navigation.map((item) => (
@@ -152,16 +152,16 @@ export default function Example({ children }: { children: React.ReactNode }) {
                     href={item.href}
                     className={clsx(
                       router.pathname == item.href
-                        ? "bg-gray-100 text-gray-900 hover:text-gray-900 hover:bg-gray-100"
-                        : "text-gray-600 hover:text-gray-900 hover:bg-gray-50",
+                        ? "bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white "
+                        : "text-gray-600 hover:text-gray-900 dark:hover:text-slate-200 hover:bg-gray-50 dark:hover:bg-gray-900/60 dark:text-gray-400",
                       "group flex items-center px-2 py-2 text-sm font-medium rounded-md",
                     )}
                   >
                     <item.icon
                       className={clsx(
                         router.pathname == item.href
-                          ? "text-gray-500"
-                          : "text-gray-400 group-hover:text-gray-500",
+                          ? "text-gray-500 dark:text-white"
+                          : "text-gray-400 group-hover:text-gray-500 dark:group-hover:text-slate-300",
                         "mr-3 flex-shrink-0 h-6 w-6",
                       )}
                       aria-hidden="true"
@@ -171,8 +171,8 @@ export default function Example({ children }: { children: React.ReactNode }) {
                       <span
                         className={clsx(
                           router.pathname == item.href
-                            ? "bg-white"
-                            : "bg-gray-100 group-hover:bg-gray-200",
+                            ? "bg-white dark:bg-gray-700"
+                            : "bg-gray-100 dark:bg-gray-900 dark:text-gray-200  group-hover:bg-gray-200 dark:group-hover:bg-gray-700",
                           "ml-3 inline-block py-0.5 px-3 text-xs font-medium rounded-full",
                         )}
                       >
@@ -182,8 +182,8 @@ export default function Example({ children }: { children: React.ReactNode }) {
                   </a>
                 ))}
               </nav>
-              <div className="h-[1px] w-[85%] mx-auto bg-gray-400"></div>
-              <button className="items-center gap-1 mt-auto py-4 px-2 flex justify-center text-gray-600 hover:bg-gray-100 rounded-lg cursor-pointer hover:text-gray-900 mx-4 my-2 border-gray-600">
+              <div className="h-[1px] w-[85%] mx-auto bg-gray-400 dark:bg-gray-600"></div>
+              <button className="items-center gap-1 mt-auto py-4 px-2 flex justify-center text-gray-600 hover:bg-gray-100 rounded-lg cursor-pointer hover:text-gray-900 mx-4 my-2 border-gray-600 dark:text-gray-400 dark:hover:bg-gray-900/70 dark:hover:text-white">
                 <ArrowLeftOnRectangleIcon className="w-6 h-6 " />
                 <p>Logout</p>
               </button>
@@ -191,22 +191,22 @@ export default function Example({ children }: { children: React.ReactNode }) {
           </div>
         </div>
         <div className="flex flex-1 flex-col md:pl-64">
-          <div className="sticky top-0 z-10 flex h-16 flex-shrink-0 bg-white shadow">
+          <div className="sticky top-0 z-10 flex h-16 flex-shrink-0 bg-white dark:bg-gray-900 shadow">
             <button
               type="button"
-              className="border-r border-gray-200 px-4 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden"
+              className="border-r border-gray-200 px-4 text-gray-500  focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden"
               onClick={() => setSidebarOpen(true)}
             >
               <span className="sr-only">Open sidebar</span>
               <Bars3BottomLeftIcon className="h-6 w-6" aria-hidden="true" />
             </button>
-            <div className="flex flex-1 justify-between px-4">
+            <div className="flex flex-1 justify-between px-4 ">
               <div className="flex flex-1">
                 <form className="flex w-full md:ml-0" action="#" method="GET">
                   <label htmlFor="search-field" className="sr-only">
                     Search
                   </label>
-                  <div className="relative w-full text-gray-400 focus-within:text-gray-600">
+                  <div className="relative w-full text-gray-400 focus-within:text-gray-600 ">
                     <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center">
                       <MagnifyingGlassIcon
                         className="h-5 w-5"
@@ -215,7 +215,7 @@ export default function Example({ children }: { children: React.ReactNode }) {
                     </div>
                     <input
                       id="search-field"
-                      className="block h-full w-full border-transparent py-2 pl-8 pr-3 text-gray-900 placeholder-gray-500 focus:border-transparent focus:placeholder-gray-400 focus:outline-none focus:ring-0 sm:text-sm"
+                      className="block h-full w-full border-transparent py-2 pl-8 pr-3 text-gray-900 placeholder-gray-500 focus:border-transparent focus:placeholder-gray-400 focus:outline-none focus:ring-0 sm:text-sm dark:bg-gray-900 dark:text-gray-200"
                       placeholder="Search"
                       type="search"
                       name="search"
@@ -226,14 +226,14 @@ export default function Example({ children }: { children: React.ReactNode }) {
               <div className="ml-4 flex items-center md:ml-6">
                 <button
                   type="button"
-                  className="rounded-full bg-white p-2 hover:bg-gray-100 text-gray-400 hover:text-gray-500"
+                  className="rounded-full bg-white  p-2 hover:bg-gray-100 dark:hover:bg-gray-700 dark:bg-gray-900 hover:dark:text-gray-400 text-gray-400 hover:text-gray-500"
                 >
                   <span className="sr-only">View notifications</span>
                   <EnvelopeIcon className="h-6 w-6" aria-hidden="true" />
                 </button>
                 <button
                   type="button"
-                  className="rounded-full bg-white p-2 hover:bg-gray-100 text-gray-400 hover:text-gray-500"
+                  className="rounded-full bg-white  p-2 hover:bg-gray-100 dark:hover:bg-gray-700 dark:bg-gray-900 hover:dark:text-gray-400 text-gray-400 hover:text-gray-500"
                 >
                   <span className="sr-only">View notifications</span>
                   <BellIcon className="h-6 w-6" aria-hidden="true" />
@@ -242,7 +242,7 @@ export default function Example({ children }: { children: React.ReactNode }) {
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
                   <div>
-                    <Menu.Button className="flex max-w-xs items-center rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 lg:rounded-md lg:p-2 lg:hover:bg-gray-50">
+                    <Menu.Button className="flex max-w-xs items-center rounded-full bg-white dark:bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 lg:rounded-md lg:p-2 lg:hover:bg-gray-50 dark:hover:bg-gray-900">
                       <img
                         className="h-8 w-8 rounded-full"
                         src={
@@ -252,7 +252,7 @@ export default function Example({ children }: { children: React.ReactNode }) {
                         }
                         alt=""
                       />
-                      <span className="ml-3 hidden text-sm font-medium text-gray-700 lg:block">
+                      <span className="ml-3 hidden text-sm font-medium text-gray-700 dark:text-gray-200 lg:block">
                         <span className="sr-only">Open user menu for </span>
                         {user?.name}
                       </span>
@@ -271,14 +271,13 @@ export default function Example({ children }: { children: React.ReactNode }) {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white dark:bg-gray-900 py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ">
                       <Menu.Item>
                         {({ active }) => (
                           <a
                             href="#"
                             className={clsx(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700",
+                              "block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 dark:hover:bg-gray-800",
                             )}
                           >
                             Your Profile
@@ -290,8 +289,7 @@ export default function Example({ children }: { children: React.ReactNode }) {
                           <a
                             href="#"
                             className={clsx(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700",
+                              "block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 dark:hover:bg-gray-800",
                             )}
                           >
                             Settings
@@ -303,8 +301,7 @@ export default function Example({ children }: { children: React.ReactNode }) {
                           <a
                             href="#"
                             className={clsx(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700",
+                              "block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 dark:hover:bg-gray-800",
                             )}
                           >
                             Logout
