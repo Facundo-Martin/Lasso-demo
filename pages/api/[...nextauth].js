@@ -23,6 +23,11 @@ export const authOptions = {
   pages: {
     signIn: "/",
   },
+  callbacks: {
+    async redirect({ url, baseUrl }) {
+      return "/dashboard";
+    },
+  },
   secret: process.env.JWT_SECRET,
 };
 export default NextAuth(authOptions);

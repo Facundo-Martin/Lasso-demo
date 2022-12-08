@@ -1,6 +1,7 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { getProviders, signIn } from "next-auth/react";
+import { getProviders, signIn, useSession } from "next-auth/react";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import { Fragment, useState } from "react";
 
 function ProviderIcon({ name }) {
@@ -52,6 +53,9 @@ function ProviderIcon({ name }) {
 }
 export default function Home({ providers }) {
   const [isOpen, setIsOpen] = useState(true);
+  const { data: session } = useSession();
+  const router = useRouter();
+  console.log(session);
 
   function closeModal() {
     setIsOpen(false);
@@ -124,7 +128,11 @@ export default function Home({ providers }) {
                             <button
                               key={provider.name}
                               className="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
-                              onClick={() => signIn(provider.id)}
+                              onClick={() =>
+                                signIn(provider.id, {
+                                  callbackUrl: "/dashboard",
+                                })
+                              }
                             >
                               <span className="sr-only">
                                 Sign in with {provider.name}
