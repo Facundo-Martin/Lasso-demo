@@ -56,6 +56,9 @@ export default function Example({ children }: { children: React.ReactNode }) {
   const session = useAuth();
   console.log("auth session:", session);
 
+  if (router.pathname == "/" || router.pathname == "/signin")
+    return <main>{children}</main>;
+
   return (
     <>
       {/*
