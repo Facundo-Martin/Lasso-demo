@@ -19,9 +19,11 @@
     "eslint-config-next": "13.0.6",
     "eslint-plugin-prettier": "^4.2.1",
     "next": "13.0.6",
+    "next-auth": "^4.18.1",
     "next-themes": "^0.2.1",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-social-login-buttons": "^3.6.1"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.45.1",

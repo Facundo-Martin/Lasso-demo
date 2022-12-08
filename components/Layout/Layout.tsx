@@ -10,8 +10,8 @@
       require('@tailwindcss/forms'),
     ],
   }
-  ```
 */
+
 import { Dialog, Menu, Transition } from "@headlessui/react";
 import {
   ArrowLeftOnRectangleIcon,
@@ -32,6 +32,8 @@ import {
 import clsx from "clsx";
 import { useRouter } from "next/router";
 import React, { Fragment, useState } from "react";
+import useAuth from "../hooks/useAuth";
+import SignInModal from "../SignInModal";
 import ThemeSwitch from "./ThemeSwitch";
 
 const navigation = [
@@ -51,6 +53,8 @@ const userNavigation = [
 export default function Example({ children }: { children: React.ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const router = useRouter();
+  const session = useAuth();
+  console.log("auth session:", session);
 
   return (
     <>
@@ -250,6 +254,7 @@ export default function Example({ children }: { children: React.ReactNode }) {
                 <ThemeSwitch />
 
                 {/* Profile dropdown */}
+                <SignInModal />
                 <Menu as="div" className="relative ml-3">
                   <div>
                     <Menu.Button className="flex max-w-xs items-center rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
