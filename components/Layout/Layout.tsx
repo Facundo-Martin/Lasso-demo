@@ -17,6 +17,8 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import clsx from "clsx";
+import { signOut } from "next-auth/react";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { Fragment, useState } from "react";
 import useAuth from "../hooks/useAuth";
@@ -138,9 +140,15 @@ export default function Example({ children }: { children: React.ReactNode }) {
         <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col ">
           {/* Sidebar component, swap this element with another sidebar if you like */}
           <div className="flex flex-grow flex-col overflow-y-auto border-r border-gray-200 dark:border-gray-600 dark:bg-gray-800 bg-white ">
-            <div className="flex flex-shrink-0 items-center px-4 bg-purple-700 dark:bg-gray-900 py-4">
-              <img className="h-8 w-auto" src="/logo.png" alt="Your Company" />
-            </div>
+            <Link href="/">
+              <div className="flex flex-shrink-0 items-center px-4 bg-purple-700 dark:bg-gray-900 py-4">
+                <img
+                  className="h-8 w-auto"
+                  src="/logo.png"
+                  alt="Your Company"
+                />
+              </div>
+            </Link>
             <div className="mt-5 flex flex-grow flex-col">
               <nav
                 className="mt-5 flex-1 space-y-1 dark:bg-gray-800 bg-white px-2"
@@ -183,7 +191,10 @@ export default function Example({ children }: { children: React.ReactNode }) {
                 ))}
               </nav>
               <div className="h-[1px] w-[85%] mx-auto bg-gray-400 dark:bg-gray-600"></div>
-              <button className="items-center gap-1 mt-auto py-4 px-2 flex justify-center text-gray-600 hover:bg-gray-100 rounded-lg cursor-pointer hover:text-gray-900 mx-4 my-2 border-gray-600 dark:text-gray-400 dark:hover:bg-gray-900/70 dark:hover:text-white">
+              <button
+                onClick={async () => await signOut()}
+                className="items-center gap-1 mt-auto py-4 px-2 flex justify-center text-gray-600 hover:bg-gray-100 rounded-lg cursor-pointer hover:text-gray-900 mx-4 my-2 border-gray-600 dark:text-gray-400 dark:hover:bg-gray-900/70 dark:hover:text-white"
+              >
                 <ArrowLeftOnRectangleIcon className="w-6 h-6 " />
                 <p>Logout</p>
               </button>
@@ -228,7 +239,7 @@ export default function Example({ children }: { children: React.ReactNode }) {
                   type="button"
                   className="rounded-full bg-white  p-2 hover:bg-gray-100 dark:hover:bg-gray-700 dark:bg-gray-900 hover:dark:text-gray-400 text-gray-400 hover:text-gray-500"
                 >
-                  <span className="sr-only">View notifications</span>
+                  <span className="sr-only">View messages</span>
                   <EnvelopeIcon className="h-6 w-6" aria-hidden="true" />
                 </button>
                 <button
@@ -242,7 +253,7 @@ export default function Example({ children }: { children: React.ReactNode }) {
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
                   <div>
-                    <Menu.Button className="flex max-w-xs items-center rounded-full bg-white dark:bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 lg:rounded-md lg:p-2 lg:hover:bg-gray-50 dark:hover:bg-gray-900">
+                    <Menu.Button className="flex max-w-xs items-center rounded-full bg-white dark:bg-gray-800 text-sm focus:outline-none lg:rounded-md lg:p-2 lg:hover:bg-gray-50 dark:hover:bg-gray-800">
                       <img
                         className="h-8 w-8 rounded-full"
                         src={
@@ -277,7 +288,7 @@ export default function Example({ children }: { children: React.ReactNode }) {
                           <a
                             href="#"
                             className={clsx(
-                              "block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 dark:hover:bg-gray-800",
+                              "block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 dark:hover:bg-gray-800 hover:bg-gray-100",
                             )}
                           >
                             Your Profile
@@ -289,7 +300,7 @@ export default function Example({ children }: { children: React.ReactNode }) {
                           <a
                             href="#"
                             className={clsx(
-                              "block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 dark:hover:bg-gray-800",
+                              "block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 dark:hover:bg-gray-800 hover:bg-gray-100",
                             )}
                           >
                             Settings
@@ -298,14 +309,14 @@ export default function Example({ children }: { children: React.ReactNode }) {
                       </Menu.Item>
                       <Menu.Item>
                         {({ active }) => (
-                          <a
-                            href="#"
+                          <button
+                            onClick={async () => await signOut()}
                             className={clsx(
-                              "block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 dark:hover:bg-gray-800",
+                              "w-full text-left block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 dark:hover:bg-gray-800 hover:bg-gray-100",
                             )}
                           >
                             Logout
-                          </a>
+                          </button>
                         )}
                       </Menu.Item>
                     </Menu.Items>

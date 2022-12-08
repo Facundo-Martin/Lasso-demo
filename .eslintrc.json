@@ -67,6 +67,7 @@
     "import/no-unresolved": "off",
     "import/extensions": "off",
     // Avoid errors when using next/link without an href in the anchor tag
-    "jsx-a11y/anchor-is-valid": "off"
+    "jsx-a11y/anchor-is-valid": "off",
+    "@typescript-eslint/no-misused-promises": "warn"
   }
 }

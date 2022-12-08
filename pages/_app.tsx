@@ -14,7 +14,8 @@ const MyApp: AppType<{ session: Session | null }> = ({
   return (
     <>
       <SessionProvider session={session}>
-        <ThemeProvider enableSystem={true} attribute="class">
+        {/* enable system false is setting the light theme as default */}
+        <ThemeProvider enableSystem={false} attribute="class">
           <Layout>
             <Component {...pageProps} />
           </Layout>
