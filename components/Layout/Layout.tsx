@@ -192,7 +192,7 @@ export default function Example({ children }: { children: React.ReactNode }) {
               </nav>
               <div className="h-[1px] w-[85%] mx-auto bg-gray-400 dark:bg-gray-600"></div>
               <button
-                onClick={async () => await signOut()}
+                onClick={() => signOut()}
                 className="items-center gap-1 mt-auto py-4 px-2 flex justify-center text-gray-600 hover:bg-gray-100 rounded-lg cursor-pointer hover:text-gray-900 mx-4 my-2 border-gray-600 dark:text-gray-400 dark:hover:bg-gray-900/70 dark:hover:text-white"
               >
                 <ArrowLeftOnRectangleIcon className="w-6 h-6 " />
@@ -310,7 +310,7 @@ export default function Example({ children }: { children: React.ReactNode }) {
                       <Menu.Item>
                         {({ active }) => (
                           <button
-                            onClick={async () => await signOut()}
+                            onClick={() => signOut()}
                             className={clsx(
                               "w-full text-left block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 dark:hover:bg-gray-800 hover:bg-gray-100",
                             )}
