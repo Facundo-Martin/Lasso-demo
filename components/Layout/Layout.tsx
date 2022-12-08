@@ -1,17 +1,3 @@
-/*
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-*/
-
 import { Dialog, Menu, Transition } from "@headlessui/react";
 import {
   ArrowLeftOnRectangleIcon,
@@ -39,33 +25,19 @@ import ThemeSwitch from "./ThemeSwitch";
 const navigation = [
   { name: "Dashboard", href: "/dashboard", icon: HomeIcon },
   { name: "Plans", href: "/plans", icon: BriefcaseIcon },
-  { name: "Advisor", href: "/advisor", icon: UsersIcon },
-  { name: "Calendar", href: "/calendar", icon: CalendarDaysIcon },
+  { name: "Advisor", href: "/advisor", count: 1, icon: UsersIcon },
+  { name: "Calendar", href: "/calendar", count: 3, icon: CalendarDaysIcon },
   { name: "Documents", href: "/documents", icon: DocumentDuplicateIcon },
-  { name: "Reports", href: "/reports", icon: ChartBarIcon },
-];
-const userNavigation = [
-  { name: "Your Profile", href: "/dashboard" },
-  { name: "Settings", href: "/dashboard" },
-  { name: "Sign out", href: "/dashboard" },
+  { name: "Reports", href: "/reports", count: 2, icon: ChartBarIcon },
 ];
 
 export default function Example({ children }: { children: React.ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const router = useRouter();
-  const session = useAuth();
-  console.log("auth session:", session);
+  const { user } = useAuth();
 
   return (
     <>
-      {/*
-        This example requires updating your template:
-
-        ```
-        <html class="h-full bg-gray-100">
-        <body class="h-full">
-        ```
-      */}
       <div>
         <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog
@@ -170,28 +142,43 @@ export default function Example({ children }: { children: React.ReactNode }) {
               <img className="h-8 w-auto" src="/logo.png" alt="Your Company" />
             </div>
             <div className="mt-5 flex flex-grow flex-col">
-              <nav className="flex-1 space-y-1 px-2 pb-4">
+              <nav
+                className="mt-5 flex-1 space-y-1 bg-white px-2"
+                aria-label="Sidebar"
+              >
                 {navigation.map((item) => (
                   <a
                     key={item.name}
                     href={item.href}
                     className={clsx(
                       router.pathname == item.href
-                        ? "bg-gray-100 text-purple-800"
-                        : "text-gray-600 hover:bg-gray-50 hover:text-gray-900",
+                        ? "bg-gray-100 text-gray-900 hover:text-gray-900 hover:bg-gray-100"
+                        : "text-gray-600 hover:text-gray-900 hover:bg-gray-50",
                       "group flex items-center px-2 py-2 text-sm font-medium rounded-md",
                     )}
                   >
                     <item.icon
                       className={clsx(
                         router.pathname == item.href
-                          ? "text-purple-700"
+                          ? "text-gray-500"
                           : "text-gray-400 group-hover:text-gray-500",
                         "mr-3 flex-shrink-0 h-6 w-6",
                       )}
                       aria-hidden="true"
                     />
-                    {item.name}
+                    <span className="flex-1">{item.name}</span>
+                    {item.count ? (
+                      <span
+                        className={clsx(
+                          router.pathname == item.href
+                            ? "bg-white"
+                            : "bg-gray-100 group-hover:bg-gray-200",
+                          "ml-3 inline-block py-0.5 px-3 text-xs font-medium rounded-full",
+                        )}
+                      >
+                        {item.count}
+                      </span>
+                    ) : null}
                   </a>
                 ))}
               </nav>
@@ -258,12 +245,16 @@ export default function Example({ children }: { children: React.ReactNode }) {
                     <Menu.Button className="flex max-w-xs items-center rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 lg:rounded-md lg:p-2 lg:hover:bg-gray-50">
                       <img
                         className="h-8 w-8 rounded-full"
-                        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                        src={
+                          user?.image
+                            ? user.image
+                            : "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                        }
                         alt=""
                       />
                       <span className="ml-3 hidden text-sm font-medium text-gray-700 lg:block">
                         <span className="sr-only">Open user menu for </span>
-                        Emilia Birch
+                        {user?.name}
                       </span>
                       <ChevronDownIcon
                         className="ml-1 hidden h-5 w-5 flex-shrink-0 text-gray-400 lg:block"
