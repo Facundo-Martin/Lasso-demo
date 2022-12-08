@@ -13,7 +13,10 @@
   ```
 */
 import { Dialog, Menu, Transition } from "@headlessui/react";
-import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
+import {
+  ArrowLeftOnRectangleIcon,
+  MagnifyingGlassIcon,
+} from "@heroicons/react/20/solid";
 import {
   Bars3BottomLeftIcon,
   BellIcon,
@@ -26,15 +29,16 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import clsx from "clsx";
+import { useRouter } from "next/router";
 import React, { Fragment, useState } from "react";
 
 const navigation = [
-  { name: "Dashboard", href: "/dashboard", icon: HomeIcon, current: true },
-  { name: "Plans", href: "/plans", icon: FolderIcon, current: false },
-  { name: "Advisor", href: "/advisor", icon: UsersIcon, current: false },
-  { name: "Calendar", href: "/calendar", icon: CalendarIcon, current: false },
-  { name: "Documents", href: "/documents", icon: InboxIcon, current: false },
-  { name: "Reports", href: "/reports", icon: ChartBarIcon, current: false },
+  { name: "Dashboard", href: "/dashboard", icon: HomeIcon },
+  { name: "Plans", href: "/plans", icon: FolderIcon },
+  { name: "Advisor", href: "/advisor", icon: UsersIcon },
+  { name: "Calendar", href: "/calendar", icon: CalendarIcon },
+  { name: "Documents", href: "/documents", icon: InboxIcon },
+  { name: "Reports", href: "/reports", icon: ChartBarIcon },
 ];
 const userNavigation = [
   { name: "Your Profile", href: "/dashboard" },
@@ -44,6 +48,7 @@ const userNavigation = [
 
 export default function Example({ children }: { children: React.ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const router = useRouter();
 
   return (
     <>
@@ -122,7 +127,7 @@ export default function Example({ children }: { children: React.ReactNode }) {
                           key={item.name}
                           href={item.href}
                           className={clsx(
-                            item.current
+                            router.pathname == item.href
                               ? "bg-gray-100 text-gray-900"
                               : "text-gray-600 hover:bg-gray-50 hover:text-gray-900",
                             "group flex items-center px-2 py-2 text-base font-medium rounded-md",
@@ -130,7 +135,7 @@ export default function Example({ children }: { children: React.ReactNode }) {
                         >
                           <item.icon
                             className={clsx(
-                              item.current
+                              router.pathname == item.href
                                 ? "text-gray-500"
                                 : "text-gray-400 group-hover:text-gray-500",
                               "mr-4 flex-shrink-0 h-6 w-6",
@@ -154,13 +159,9 @@ export default function Example({ children }: { children: React.ReactNode }) {
         {/* Static sidebar for desktop */}
         <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
           {/* Sidebar component, swap this element with another sidebar if you like */}
-          <div className="flex flex-grow flex-col overflow-y-auto border-r border-gray-200 bg-white pt-5">
-            <div className="flex flex-shrink-0 items-center px-4">
-              <img
-                className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                alt="Your Company"
-              />
+          <div className="flex flex-grow flex-col overflow-y-auto border-r border-gray-200 bg-white ">
+            <div className="flex flex-shrink-0 items-center px-4 bg-purple-700 py-4">
+              <img className="h-8 w-auto" src="/logo.png" alt="Your Company" />
             </div>
             <div className="mt-5 flex flex-grow flex-col">
               <nav className="flex-1 space-y-1 px-2 pb-4">
@@ -169,7 +170,7 @@ export default function Example({ children }: { children: React.ReactNode }) {
                     key={item.name}
                     href={item.href}
                     className={clsx(
-                      item.current
+                      router.pathname == item.href
                         ? "bg-gray-100 text-gray-900"
                         : "text-gray-600 hover:bg-gray-50 hover:text-gray-900",
                       "group flex items-center px-2 py-2 text-sm font-medium rounded-md",
@@ -177,7 +178,7 @@ export default function Example({ children }: { children: React.ReactNode }) {
                   >
                     <item.icon
                       className={clsx(
-                        item.current
+                        router.pathname == item.href
                           ? "text-gray-500"
                           : "text-gray-400 group-hover:text-gray-500",
                         "mr-3 flex-shrink-0 h-6 w-6",
@@ -188,6 +189,11 @@ export default function Example({ children }: { children: React.ReactNode }) {
                   </a>
                 ))}
               </nav>
+              <div className="h-[1px] w-[85%] mx-auto bg-gray-400"></div>
+              <button className="items-center gap-1 mt-auto py-4 px-2 flex justify-center text-gray-600 hover:bg-gray-100 rounded-lg cursor-pointer hover:text-gray-900 mx-4 my-2 border-gray-600">
+                <ArrowLeftOnRectangleIcon className="w-6 h-6 " />
+                <p>Logout</p>
+              </button>
             </div>
           </div>
         </div>
