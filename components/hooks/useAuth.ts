@@ -1,7 +1,8 @@
 import { useSession } from "next-auth/react";
 
 export default function useAuth() {
-  const { data: session } = useSession();
+  const { data } = useSession();
+  const user = data?.user;
 
-  return { session };
+  return { user };
 }

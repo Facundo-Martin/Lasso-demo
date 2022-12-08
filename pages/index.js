@@ -1,7 +1,6 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { getProviders, signIn, useSession } from "next-auth/react";
 import Head from "next/head";
-import { useRouter } from "next/router";
 import { Fragment, useState } from "react";
 
 function ProviderIcon({ name }) {
@@ -54,7 +53,6 @@ function ProviderIcon({ name }) {
 export default function Home({ providers }) {
   const [isOpen, setIsOpen] = useState(true);
   const { data: session } = useSession();
-  const router = useRouter();
   console.log(session);
 
   function closeModal() {
