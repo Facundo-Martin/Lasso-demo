@@ -20,6 +20,9 @@ export const authOptions = {
     }),
     // ...add more providers here
   ],
+  pages: {
+    signIn: "/",
+  },
   secret: process.env.JWT_SECRET,
 };
 export default NextAuth(authOptions);
