@@ -13,13 +13,15 @@
   },
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
+    "project": "./tsconfig.json", // tells parser relative path of tsconfig.json
     "ecmaFeatures": {
       "jsx": true
     },
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-
+  // Ignore linting for js files
+  "ignorePatterns": ["**/*.js"],
   // all plugins (eslint-plugin-xxx) go here:
   "plugins": [
     "@typescript-eslint",

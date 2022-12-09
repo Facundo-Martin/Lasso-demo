@@ -18,5 +18,3 @@ _.scss
 next-env.d.ts
 
 # next.config.js
-
-.eslintrc
