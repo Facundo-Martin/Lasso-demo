@@ -15,12 +15,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": [
-    "pages/index.js",
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "pages/api/[...nextauth].js"
-  ],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".eslintrc.json"],
   "exclude": ["node_modules", "**/*.js", "*.js"]
 }
