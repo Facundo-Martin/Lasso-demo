@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-export default function Calendar() {
+export default function CalendarPage() {
   return (
     <>
       <Head>
